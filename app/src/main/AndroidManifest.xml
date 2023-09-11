@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dreamforone.jjcatering">
+    <!-- 네트워크 연결할 때는 반드시 Internet 권한은 필수로 들어가야 합니다. -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 파일 첨부 기능이 있을 경우 아래 권한설정을 해주셔야 합니다. -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 카메라를 쓸 때는 아래 권한설정을 해주세요 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Jjcatering"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar" />
+        <!-- 카메라를 쓸 때는 이거를 반드시 넣어주세요 -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.dreamforone.jjcatering"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <!-- resource 디렉토리에 xml 디렉토리를 만들고 file_paths 파일 만들어주세요 -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
